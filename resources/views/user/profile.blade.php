@@ -14,57 +14,34 @@
                         <h5 class="mb-0">Profile Information</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/user/profile" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
+                        <form>
                             <div class="row mb-4">
                                 <div class="col-md-3 text-center">
-                                    <img src="{{ Auth::user()->avatar ?? '/images/user-default.png' }}" alt="Profile" class="rounded-circle mb-3" width="120" height="120" id="avatarPreview">
+                                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                                         alt="Profile" class="rounded-circle mb-3" width="120" height="120" id="avatarPreview">
                                     <div>
-                                        <input type="file" class="d-none" id="avatarInput" name="avatar" accept="image/*">
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="document.getElementById('avatarInput').click()">
-                                            <i class="fas fa-camera me-1"></i> Change
+                                        <button type="button" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-camera me-1"></i> Change Photo
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="first_name" class="form-label">First Name</label>
-                                            <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name', Auth::user()->first_name) }}" required>
-                                            @error('first_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" class="form-control" value="John">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="last_name" class="form-label">Last Name</label>
-                                            <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name', Auth::user()->last_name) }}" required>
-                                            @error('last_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" value="Doe">
                                         </div>
                                         <div class="col-12">
-                                            <label for="email" class="form-label">Email Address</label>
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', Auth::user()->email) }}" required>
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" value="john.doe@example.com">
                                         </div>
                                         <div class="col-12">
-                                            <label for="phone" class="form-label">Phone Number</label>
-                                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', Auth::user()->phone) }}" required>
-                                            @error('phone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <label class="form-label">Phone</label>
+                                            <input type="tel" class="form-control" value="(123) 456-7890">
                                         </div>
                                     </div>
                                 </div>
@@ -81,38 +58,76 @@
 
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Address Book</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Primary Address -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card border-primary h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
+                                            <h6 class="fw-bold mb-0">Primary Address</h6>
+                                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                        </div>
+                                        <p>
+                                            John Doe<br>
+                                            123 Main Street<br>
+                                            Medical City, NY 10001<br>
+                                            United States<br>
+                                            (123) 456-7890
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Address -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
+                                            <h6 class="fw-bold mb-0">Work Address</h6>
+                                            <div>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">Edit</button>
+                                                <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            John Doe<br>
+                                            456 Business Ave<br>
+                                            Suite 200<br>
+                                            Medical City, NY 10001<br>
+                                            (123) 555-7890
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-plus me-2"></i> Add New Address
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Change Password</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/user/password">
-                            @csrf
-                            @method('PUT')
-
+                        <form>
                             <div class="mb-3">
-                                <label for="current_password" class="form-label">Current Password</label>
-                                <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
-                                @error('current_password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <label class="form-label">Current Password</label>
+                                <input type="password" class="form-control">
                             </div>
-
                             <div class="mb-3">
-                                <label for="new_password" class="form-label">New Password</label>
-                                <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required>
-                                @error('new_password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <label class="form-label">New Password</label>
+                                <input type="password" class="form-control">
                             </div>
-
                             <div class="mb-4">
-                                <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
-                                <input id="new_password_confirmation" type="password" class="form-control" name="new_password_confirmation" required>
+                                <label class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control">
                             </div>
-
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary px-4">
                                     Update Password
@@ -124,13 +139,25 @@
 
                 <div class="card">
                     <div class="card-header bg-danger text-white">
-                        <h5 class="mb-0">Danger Zone</h5>
+                        <h5 class="mb-0">Account Actions</h5>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="fw-bold mb-1">Download Your Data</h6>
+                                <p class="small text-muted mb-0">Request a copy of your personal data</p>
+                            </div>
+                            <button class="btn btn-outline-secondary">
+                                Request Download
+                            </button>
+                        </div>
+
+                        <hr>
+
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h6 class="mb-1">Delete Account</h6>
-                                <p class="small text-muted mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                                <h6 class="fw-bold mb-1">Delete Account</h6>
+                                <p class="small text-muted mb-0">Permanently remove your account and all data</p>
                             </div>
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                                 Delete Account
@@ -153,36 +180,30 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-                <form method="POST" action="/user/profile" id="deleteAccountForm">
-                    @csrf
-                    @method('DELETE')
-                    <div class="mb-3">
-                        <label for="deletePassword" class="form-label">Enter your password to confirm</label>
-                        <input type="password" class="form-control" id="deletePassword" name="password" required>
-                    </div>
-                </form>
+                <div class="mb-3">
+                    <label class="form-label">Enter your password to confirm</label>
+                    <input type="password" class="form-control">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-danger" form="deleteAccountForm">Delete Account</button>
+                <button type="button" class="btn btn-danger">Delete Account</button>
             </div>
         </div>
     </div>
 </div>
-@endsection
 
-@push('scripts')
 <script>
-    // Avatar preview
-    document.getElementById('avatarInput').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('avatarPreview').src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+// Profile photo upload preview
+document.querySelector('input[type="file"]')?.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById('avatarPreview').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
 </script>
-@endpush
+@endsection

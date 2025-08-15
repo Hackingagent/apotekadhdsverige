@@ -1,3 +1,8 @@
+<!-- CSS -->
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+<!-- JavaScript (with Popper.js included) -->
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
 <header class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
@@ -28,18 +33,21 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/products/category/pain-relief">Pain Relief</a></li>
-                            <li><a class="dropdown-item" href="/products/category/cold-flu">Cold & Flu</a></li>
-                            <li><a class="dropdown-item" href="/products/category/vitamins">Vitamins</a></li>
-                            <li><a class="dropdown-item" href="/products/category/first-aid">First Aid</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                            <li><a class="dropdown-item" href="/category">Pain Relief</a></li>
+                            <li><a class="dropdown-item" href="/category">Cold & Flu</a></li>
+                            <li><a class="dropdown-item" href="/category">Vitamins</a></li>
+                            <li><a class="dropdown-item" href="/category">First Aid</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>

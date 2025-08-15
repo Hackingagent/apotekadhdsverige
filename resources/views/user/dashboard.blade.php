@@ -5,50 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <img src="{{ Auth::user()->avatar ?? '/images/user-default.png' }}" alt="Profile" class="rounded-circle mb-3" width="120" height="120">
-                        <h5 class="card-title mb-1">{{ Auth::user()->name }}</h5>
-                        <p class="text-muted small mb-3">Member since {{ Auth::user()->created_at->format('M Y') }}</p>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="/user/profile" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-user-edit me-1"></i> Edit
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Menu</h5>
-                    </div>
-                    <div class="list-group list-group-flush">
-                        <a href="/user/dashboard" class="list-group-item list-group-item-action active">
-                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-                        </a>
-                        <a href="/user/orders" class="list-group-item list-group-item-action">
-                            <i class="fas fa-shopping-bag me-2"></i> My Orders
-                        </a>
-                        <a href="/user/prescriptions" class="list-group-item list-group-item-action">
-                            <i class="fas fa-file-prescription me-2"></i> Prescriptions
-                        </a>
-                        <a href="/user/profile" class="list-group-item list-group-item-action">
-                            <i class="fas fa-user me-2"></i> Profile
-                        </a>
-                        <a href="/user/addresses" class="list-group-item list-group-item-action">
-                            <i class="fas fa-map-marker-alt me-2"></i> Addresses
-                        </a>
-                        <a href="/user/payment-methods" class="list-group-item list-group-item-action">
-                            <i class="fas fa-credit-card me-2"></i> Payment Methods
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="list-group-item list-group-item-action border-0">
-                                <i class="fas fa-sign-out-alt me-2"></i> Logout
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                @include('user.partials.sidebar')
             </div>
 
             <div class="col-lg-9">
@@ -65,7 +22,7 @@
                                             <i class="fas fa-shopping-bag text-primary fs-4"></i>
                                         </div>
                                         <h5 class="card-title">Recent Orders</h5>
-                                        <p class="card-text">You have {{ $recentOrders->count() }} recent orders</p>
+                                        <p class="card-text">You have 2 recent orders</p>
                                         <a href="/user/orders" class="btn btn-outline-primary btn-sm">View All</a>
                                     </div>
                                 </div>
@@ -77,7 +34,7 @@
                                             <i class="fas fa-file-prescription text-primary fs-4"></i>
                                         </div>
                                         <h5 class="card-title">Active Prescriptions</h5>
-                                        <p class="card-text">You have {{ $activePrescriptions }} active prescriptions</p>
+                                        <p class="card-text">You have 1 active prescription</p>
                                         <a href="/user/prescriptions" class="btn btn-outline-primary btn-sm">Manage</a>
                                     </div>
                                 </div>
@@ -103,29 +60,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($recentOrders as $order)
                                     <tr>
-                                        <td>#{{ $order->order_number }}</td>
-                                        <td>{{ $order->created_at->format('M d, Y') }}</td>
-                                        <td>
-                                            <span class="badge bg-{{ $order->status_color }}">{{ ucfirst($order->status) }}</span>
-                                        </td>
-                                        <td>${{ number_format($order->total, 2) }}</td>
+                                        <td>#12345</td>
+                                        <td>Jan 15, 2023</td>
+                                        <td><span class="badge bg-success">Delivered</span></td>
+                                        <td>$42.50</td>
                                         <td class="text-end">
-                                            <a href="/user/orders/{{ $order->id }}" class="btn btn-sm btn-outline-primary">
-                                                View
-                                            </a>
+                                            <a href="/user/orders/12345" class="btn btn-sm btn-outline-primary">View</a>
                                         </td>
                                     </tr>
-                                    @empty
                                     <tr>
-                                        <td colspan="5" class="text-center py-4">
-                                            <i class="fas fa-shopping-bag fa-2x text-muted mb-3"></i>
-                                            <p class="text-muted">You haven't placed any orders yet</p>
-                                            <a href="/products" class="btn btn-primary">Shop Now</a>
+                                        <td>#12344</td>
+                                        <td>Dec 22, 2022</td>
+                                        <td><span class="badge bg-success">Delivered</span></td>
+                                        <td>$28.75</td>
+                                        <td class="text-end">
+                                            <a href="/user/orders/12344" class="btn btn-sm btn-outline-primary">View</a>
                                         </td>
                                     </tr>
-                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

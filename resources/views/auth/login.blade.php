@@ -8,17 +8,16 @@
                 <div class="card shadow-sm">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
-                            <img src="/images/logo.png" alt="PharmaCare" height="40" class="mb-3">
+                            <i class="fas fa-prescription-bottle-alt fa-3x text-primary mb-3"></i>
                             <h2 class="fw-bold">Sign In</h2>
-                            <p class="text-muted">Access your account to manage orders, prescriptions and more</p>
+                            <p class="text-muted">Access your account to manage orders and prescriptions</p>
                         </div>
 
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-
+                        <form>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" value="customer@example.com">
+
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -26,36 +25,26 @@
                                 @enderror
                             </div>
 
+
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" value="password">
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="remember">
-                                        Remember Me
-                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="remember" checked>
+                                    <label class="form-check-label" for="remember">Remember Me</label>
                                 </div>
-                                @if (Route::has('password.request'))
-                                    <a class="text-primary" href="{{ route('password.request') }}">
-                                        Forgot Password?
-                                    </a>
-                                @endif
+                                <a href="/forgot-password" class="text-primary">Forgot Password?</a>
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-                                Sign In
+                                <a href="/user/dashboard">Signin</a>
                             </button>
 
                             <div class="text-center">
-                                <p class="text-muted mb-0">Don't have an account? <a href="{{ route('register') }}" class="text-primary">Sign Up</a></p>
+                                <p class="text-muted mb-0">Don't have an account? <a href="/register" class="text-primary">Sign Up</a></p>
                             </div>
                         </form>
                     </div>

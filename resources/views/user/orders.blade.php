@@ -23,46 +23,158 @@
                                     <tr>
                                         <th>Order #</th>
                                         <th>Date</th>
-                                        <th>Items</th>
                                         <th>Status</th>
+                                        <th>Items</th>
                                         <th>Total</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($orders as $order)
+                                    <!-- Order 1 -->
                                     <tr>
-                                        <td>#{{ $order->order_number }}</td>
-                                        <td>{{ $order->created_at->format('M d, Y') }}</td>
-                                        <td>{{ $order->items_count }}</td>
-                                        <td>
-                                            <span class="badge bg-{{ $order->status_color }}">{{ ucfirst($order->status) }}</span>
-                                        </td>
-                                        <td>${{ number_format($order->total, 2) }}</td>
+                                        <td>#PH-10025</td>
+                                        <td>May 15, 2023</td>
+                                        <td><span class="badge bg-success">Delivered</span></td>
+                                        <td>3</td>
+                                        <td>$42.50</td>
                                         <td class="text-end">
-                                            <a href="/user/orders/{{ $order->id }}" class="btn btn-sm btn-outline-primary">
+                                            <a href="/user/orders/10025" class="btn btn-sm btn-outline-primary">
                                                 Details
                                             </a>
                                         </td>
                                     </tr>
-                                    @empty
+
+                                    <!-- Order 2 -->
                                     <tr>
-                                        <td colspan="6" class="text-center py-4">
-                                            <i class="fas fa-shopping-bag fa-2x text-muted mb-3"></i>
-                                            <p class="text-muted">You haven't placed any orders yet</p>
-                                            <a href="/products" class="btn btn-primary">Shop Now</a>
+                                        <td>#PH-10018</td>
+                                        <td>Apr 28, 2023</td>
+                                        <td><span class="badge bg-success">Delivered</span></td>
+                                        <td>2</td>
+                                        <td>$28.75</td>
+                                        <td class="text-end">
+                                            <a href="/user/orders/10018" class="btn btn-sm btn-outline-primary">
+                                                Details
+                                            </a>
                                         </td>
                                     </tr>
-                                    @endforelse
+
+                                    <!-- Order 3 -->
+                                    <tr>
+                                        <td>#PH-10005</td>
+                                        <td>Apr 5, 2023</td>
+                                        <td><span class="badge bg-warning text-dark">Processing</span></td>
+                                        <td>1</td>
+                                        <td>$12.99</td>
+                                        <td class="text-end">
+                                            <a href="/user/orders/10005" class="btn btn-sm btn-outline-primary">
+                                                Details
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    @if($orders->hasPages())
-                    <div class="card-footer">
-                        {{ $orders->links() }}
+                </div>
+
+                <!-- Order Details (Example for one order) -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Order Details #PH-10025</h5>
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-print me-1"></i> Print Invoice
+                        </button>
                     </div>
-                    @endif
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Shipping Address</h6>
+                                <p>
+                                    John Doe<br>
+                                    123 Main Street<br>
+                                    Medical City, NY 10001<br>
+                                    (123) 456-7890
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Order Information</h6>
+                                <p>
+                                    <strong>Date:</strong> May 15, 2023<br>
+                                    <strong>Status:</strong> <span class="badge bg-success">Delivered</span><br>
+                                    <strong>Payment:</strong> Visa •••• 4242
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive mb-4">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Extra Strength Pain Reliever</strong><br>
+                                            <small class="text-muted">SKU: PR-500</small>
+                                        </td>
+                                        <td>$12.99</td>
+                                        <td>1</td>
+                                        <td>$12.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Allergy Relief Tablets</strong><br>
+                                            <small class="text-muted">SKU: AR-200</small>
+                                        </td>
+                                        <td>$8.50</td>
+                                        <td>2</td>
+                                        <td>$17.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Vitamin C 1000mg</strong><br>
+                                            <small class="text-muted">SKU: VC-1000</small>
+                                        </td>
+                                        <td>$12.50</td>
+                                        <td>1</td>
+                                        <td>$12.50</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end">Subtotal:</td>
+                                        <td>$42.49</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-end">Shipping:</td>
+                                        <td>FREE</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-end">Tax:</td>
+                                        <td>$3.40</td>
+                                    </tr>
+                                    <tr class="fw-bold">
+                                        <td colspan="3" class="text-end">Total:</td>
+                                        <td>$45.89</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-undo me-2"></i> Request Return
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-shopping-cart me-2"></i> Reorder Items
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
