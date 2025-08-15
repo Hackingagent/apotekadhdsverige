@@ -35,5 +35,11 @@ Route::get('/product', [ProductController::class, 'showProduct'])->name('product
 Route::get('/category', [ProductController::class, 'showCategory'])->name('category');
 
 
+Route::get('/run-migrations', function() {
+    Artisan::call('migrate');
+    return 'Migrations completed!';
+});
+
+
 
 
