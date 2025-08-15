@@ -36,8 +36,12 @@ Route::get('/category', [ProductController::class, 'showCategory'])->name('categ
 
 
 Route::get('/run-migrations', function() {
-    Artisan::call('migrate');
-    return 'Migrations completed!';
+    try {
+        Artisan::call('migrate --force');
+        return 'Migrations successful!';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
 });
 
 

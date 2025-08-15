@@ -1,13 +1,17 @@
 FROM php:8.2-apache
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    libzip-dev libpng-dev libonig-dev libxml2-dev libpq-dev \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip
+# Install PHP extensions (add pdo_pgsql)
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring zip
 
 # Apache config
 RUN a2enmod rewrite
