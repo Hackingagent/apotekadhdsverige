@@ -19,7 +19,11 @@ RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 RUN a2enmod rewrite
 
 # Copy all files into the container
-COPY . /var/www/html/
+# With this:
+    COPY . /var/www/html/
+    WORKDIR /var/www/html
+    RUN mv /var/www/html/public /var/www/html/public_html
+    RUN sed -i 's#/var/www/html#/var/www/html/public_html#g' /etc/apache2/sites-available/000-default.conf
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
