@@ -1,0 +1,42 @@
+export const translations = {
+    en: {
+      home: "Home",
+      products: "Products",
+      about: "About Us",
+      blog: "Blog",
+      contact: "Contact",
+      searchPlaceholder: "Search medicines...",
+      myAccount: "My Account",
+      cart: "Cart",
+      headerPromo: "Free shipping on orders over $50",
+      searchProducts: "Search products...",
+      filters: "Filters",
+      allCategories: "All Categories",
+      allPrices: "All Prices",
+      prescriptionRequired: "Prescription Required",
+      overTheCounter: "Over the Counter",
+      noProductsFound: "No products found matching your criteria",
+      description: "Description",
+      details: "Details",
+      manufacturer: "Manufacturer",
+      dosage: "Dosage",
+      quantity: "Quantity",
+      expiryDate: "Expiry Date",
+      addToCart: "Add to Cart",
+      backToProducts: "Back to Products",
+      // Add more translations as needed
+    },
+    es: {
+      home: "Inicio",
+      products: "Productos",
+      about: "Sobre Nosotros",
+      blog: "Blog",
+      contact: "Contacto",
+      searchPlaceholder: "Buscar medicamentos...",
+      myAccount: "Mi Cuenta",
+      cart: "Carrito",
+      headerPromo: "Envío gratis en pedidos superiores a $50",
+      // Add Spanish translations for all other strings
+    },
+    // Add other languages as needed
+  };
